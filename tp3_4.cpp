@@ -45,6 +45,15 @@ int main(){
 
     mostrar(personas, cantClientes);
 
+    for(int i = 0; i <cantClientes; i++){
+        free((personas + i)->nombre);
+
+        for(int j = 0; j < (personas + i)->CantProdsAPedir; j++){
+            free(((personas + i)->productos) + j);
+        }
+    }
+    free(personas);
+
     return 0;
 }
 
@@ -75,10 +84,9 @@ void cargarProductos(Prod *array, int tamanio)
 
         (array + i)->cantidad = rand()% 10 + 1;
 
-        (array + i)->tipoProd = (char*)malloc(sizeof(char)*11);
+        //(array + i)->tipoProd = (char*)malloc(sizeof(char)*13);
         ProdAleatorio = rand()% 4;
-        strcpy((array + i)->tipoProd, tiposProd[ProdAleatorio]);
-        printf("\n %s \n",tiposProd[ProdAleatorio]);
+        (array + i)->tipoProd = tiposProd[ProdAleatorio];
 
         (array + i)->precioUnitario = (float)(rand()% 910 + 1000) /10;
 
