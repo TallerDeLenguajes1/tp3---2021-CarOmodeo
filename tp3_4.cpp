@@ -48,9 +48,7 @@ int main(){
     for(int i = 0; i <cantClientes; i++){
         free((personas + i)->nombre);
 
-        for(int j = 0; j < (personas + i)->CantProdsAPedir; j++){
-            free(((personas + i)->productos) + j);
-        }
+        free((personas + i)->productos);        
     }
     free(personas);
 
